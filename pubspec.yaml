@@ -1,0 +1,40 @@
+name: silicon_beach_admin
+description: A new Flutter project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  built_value:
+  built_collection:
+  redux:
+  flutter_redux:
+  redux_remote_devtools:
+
+  firebase_auth:
+  google_sign_in:
+  google_sign_in_web:
+
+dependency_overrides:
+  firebase_auth_web:
+    # hotfix until they fix https://github.com/FirebaseExtended/flutterfire/issues/1685
+    path: ../flutter/flutterfire/packages/firebase_auth/firebase_auth_web
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons:
+  flutter_native_splash:
+  build_runner:
+  built_value_generator:
+  pedantic:
+  test:
+  mockito:
+
+flutter:
+  uses-material-design: true
