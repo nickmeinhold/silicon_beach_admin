@@ -8,8 +8,8 @@ import 'package:silicon_beach_admin/models/app_state.dart';
 import 'package:silicon_beach_admin/models/user.dart';
 import 'package:silicon_beach_admin/redux/middleware.dart';
 import 'package:silicon_beach_admin/redux/reducers.dart';
-import 'package:silicon_beach_admin/services/auth_service.dart';
 import 'package:silicon_beach_admin/services/firestore_service.dart';
+import 'package:silicon_beach_admin/util/alt_auth_service.dart';
 import 'package:silicon_beach_admin/widgets/auth_page.dart';
 import 'package:silicon_beach_admin/widgets/main_page.dart';
 
@@ -34,7 +34,7 @@ class _SpaceAppState extends State<SpaceApp> {
           initialState: AppState.init(),
           middleware: [
             ...createMiddleware(
-              AuthService(FirebaseAuth.instance,
+              AltAuthService(FirebaseAuth.instance,
                   GoogleSignIn(scopes: <String>['email'])),
               FirestoreService(),
             ),

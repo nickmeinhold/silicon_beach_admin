@@ -12,19 +12,39 @@ flutter pub run build_runner build
 
 ## Running 
 
-Run on port 5000, as localhost:5000 is whitelisted for Google authentication:
+Run on port 5000, as localhost:5000 is [whitelisted for Google authentication](https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_auth/firebase_auth/example):
 
 ```Dart
 flutter run -d web-server --web-port 5000
+flutter run -d chrome --web-port 5000
 ```
 
-The Chrome developer version that VS Code launches can cause:
+### Issues 
+
+#### Firebase Auth 
+
+When running locally, the firebase configuration won't work as it is using reserved hosting URLs. 
+
+Using CDNs as in `web/index_ddc.html` will work. 
+- note: this file is not checked in to the repo
+
+#### Google Sign in 
+
+When launching from VS Code debug, attempting to sign in produces:
 
 ```
 “Browser or app may not be secure. Try using a different browser.”
 ```
 
-With Flutter Firebase Google Login, however opening the same URL (localhost:portnumber) in the normal chrome will work.
+Probably due to running chrome with remote debugging, see [this SO question](https://stackoverflow.com/questions/59480956/browser-or-app-may-not-be-secure-try-using-a-different-browser-error-with-fl)
+
+Either run without debugging: 
+
+```Dart
+flutter run -d web-server --web-port 5000
+```
+
+Or use `AltAuthService` in place of `AuthService`, which emits a user from the stream of auth state and avoids the need to sign in.
 
 ## Building 
 
